@@ -2,7 +2,7 @@
   <div
     id="bg"
     ref="bg"
-    class="pointer-events-none fixed -z-50 size-[25vh] origin-center rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400 blur-[120px] dark:opacity-70 sm:size-[50vh]"></div>
+    class="pointer-events-none fixed -z-50 size-[25vh] origin-center rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400 blur-[100px] sm:size-[50vh]"></div>
 </template>
 
 <script setup lang="ts">

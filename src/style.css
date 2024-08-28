@@ -3,7 +3,7 @@
 @tailwind utilities;
 @layer base {
   body {
-    @apply bg-[#1b1b1b] text-[#f9f9f9];
+    /* @apply bg-[#1b1b1b] text-[#f9f9f9]; */
   }
 }
 @layer components {

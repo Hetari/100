@@ -2,7 +2,7 @@
   <main class="font-mono">
     <p
       id="heading"
-      class="common-padding text-[13px]">
+      class="common-padding text-sm">
       <span
         v-for="(word, index) in displayWords"
         :key="index"
@@ -11,12 +11,12 @@
       </span>
     </p>
 
-    <div class="flex flex-wrap justify-between gap-4">
+    <div class="gap-y-2 flex flex-wrap justify-between">
       <router-link
         :to="p.urlName"
         v-for="p in projects"
         :key="p.id"
-        class="size-[350px] text-center content-center">
+        class="border border-transparent hover:border-slate-500 transition- duration-500 ease-in-out size-[300px] text-center content-center">
         <video
           v-if="p.isVideo"
           class="size-full object-cover"
@@ -35,16 +35,7 @@
 
 <script setup lang="ts">
   import { onMounted, ref } from 'vue';
-  import { _0 } from '../assets';
-  // All my projects goes here
-  const projects = [
-    {
-      id: 0,
-      src: _0,
-      urlName: '/0',
-      isVideo: true
-    }
-  ];
+  import projects from '../projects';
 
   const words = [
     'Hetari',

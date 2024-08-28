@@ -16,7 +16,7 @@
         :to="p.urlName"
         v-for="p in projects"
         :key="p.id"
-        class="border border-transparent hover:border-slate-500 transition- duration-500 ease-in-out size-[300px] text-center content-center">
+        class="border border-transparent hover:border-slate-800 transition- duration-500 ease-in-out size-[300px] text-center content-center">
         <video
           v-if="p.isVideo"
           class="size-full object-cover"

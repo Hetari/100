@@ -4,7 +4,7 @@ const projects = [
   {
     id: 0,
     src: _0,
-    urlName: '/0',
+    urlName: '/100/0',
     isVideo: true
   }
 ];

@@ -16,7 +16,7 @@
         :to="p.urlName"
         v-for="p in projects"
         :key="p.id"
-        class="size-[300px] text-center content-center">
+        class="size-[350px] text-center content-center">
         <video
           v-if="p.isVideo"
           class="size-full object-cover"

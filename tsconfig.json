@@ -1,4 +1,5 @@
 {
+  // "include": ["./typed-router.d.ts"],
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },

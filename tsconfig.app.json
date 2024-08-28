@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["unplugin-vue-router/client"],
     "target": "ES2020",
     "useDefineForClassFields": true,
     "module": "ESNext",

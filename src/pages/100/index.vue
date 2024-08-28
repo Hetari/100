@@ -35,7 +35,7 @@
 
 <script setup lang="ts">
   import { onMounted, ref } from 'vue';
-  import projects from '../projects';
+  import projects from '../../projects';
 
   const words = [
     'Hetari',

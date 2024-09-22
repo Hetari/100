@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
   import P5 from 'p5';
-  import { onMounted, ref, watch } from 'vue';
+  import { onMounted, onUnmounted, ref, watch } from 'vue';
   import { get, useElementHover } from '@vueuse/core';
 
   const canvas = ref<HTMLDivElement | null>();
@@ -62,10 +62,33 @@
     }
   }
 
+  // Increase speed on hover
+  const increaseSpeed = () => {
+    let interval = setInterval(() => {
+      if (speed.value >= 50 || !isHovered.value) {
+        clearInterval(interval);
+      } else {
+        speed.value += 1;
+      }
+    }, 1);
+  };
+
+  // Reset speed when not hovered
+  const resetSpeed = () => {
+    let interval = setInterval(() => {
+      if (speed.value <= 5 || isHovered.value) {
+        clearInterval(interval);
+      } else {
+        speed.value -= 1;
+      }
+    }, 1);
+  };
+
+  let myp5: p5;
   onMounted(() => {
     const stars: Star[] = [];
 
-    const myp5: p5 = new P5(
+    myp5 = new P5(
       (sketch: p5) => {
         sketch.setup = () => {
           // Create a canvas that fits the screen
@@ -91,27 +114,9 @@
     );
   });
 
-  // Increase speed on hover
-  const increaseSpeed = () => {
-    let interval = setInterval(() => {
-      if (speed.value >= 50 || !isHovered.value) {
-        clearInterval(interval);
-      } else {
-        speed.value += 1;
-      }
-    }, 1);
-  };
-
-  // Reset speed when not hovered
-  const resetSpeed = () => {
-    let interval = setInterval(() => {
-      if (speed.value <= 5 || isHovered.value) {
-        clearInterval(interval);
-      } else {
-        speed.value -= 1;
-      }
-    }, 1);
-  };
+  onUnmounted(() => {
+    myp5.remove();
+  });
 
   // Watch for hover changes
   watch(isHovered, (newVal: boolean) => {

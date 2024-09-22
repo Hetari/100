@@ -11,7 +11,7 @@
         :to="p.urlName"
         v-for="p in projects"
         :key="p.id"
-        class="z-0 size-[300px] content-center border transition-all duration-500 ease-in-out hover:z-10 hover:scale-105 hover:shadow-2xl hover:drop-shadow-2xl"
+        class="z-0 size-[50vw] content-center border transition-all duration-500 ease-in-out hover:z-10 hover:scale-105 hover:shadow-2xl hover:drop-shadow-2xl md:size-[300px]"
       >
         <video
           v-if="p.isVideo"

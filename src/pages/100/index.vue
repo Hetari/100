@@ -57,8 +57,8 @@
   }
 
   onMounted(() => {
-    let duration = 1000; // 1 second
-    let interval = 10; // Update every 50ms
+    let duration = 1500; // in ms
+    let interval = 10; // in ms
     let steps = duration / interval;
 
     let stepCount = 0;

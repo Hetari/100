@@ -42,7 +42,7 @@
     }
 
     show() {
-      this.p.fill(255);
+      this.p.fill(0);
       this.p.noStroke();
 
       // Perspective scaling
@@ -59,7 +59,7 @@
       const px = this.p.map(this.x / this.pz, 0, 1, 0, this.p.width);
       const py = this.p.map(this.y / this.pz, 0, 1, 0, this.p.height);
       this.pz = this.z;
-      this.p.stroke(255);
+      this.p.stroke(0);
       this.p.line(px, py, sx, sy);
     }
   }
@@ -78,7 +78,7 @@
         }
 
         sketch.draw = () => {
-          sketch.background(0);
+          sketch.background(255);
           sketch.translate(sketch.width / 2, sketch.height / 2);
 
           stars.forEach((star) => {

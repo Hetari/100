@@ -11,12 +11,12 @@
       </span>
     </p>
 
-    <div class="gap-y-2 flex flex-wrap justify-between">
+    <div class="gap-y-2 flex flex-wrap">
       <router-link
         :to="p.urlName"
         v-for="p in projects"
         :key="p.id"
-        class="border border-transparent hover:border-slate-800 transition- duration-500 ease-in-out size-[300px] text-center content-center">
+        class="border transition-all z-0 hover:z-10 duration-500 ease-in-out size-[300px] content-center hover:scale-105 hover:drop-shadow-2xl hover:shadow-2xl">
         <video
           v-if="p.isVideo"
           class="size-full object-cover"
@@ -34,7 +34,7 @@
 </template>
 
 <script setup lang="ts">
-  import { onMounted, ref } from 'vue';
+  import { onBeforeMount, onMounted, ref } from 'vue';
   import projects from '../../projects';
 
   const words = [
@@ -56,8 +56,17 @@
     return chars.charAt(Math.floor(Math.random() * chars.length));
   }
 
+  onBeforeMount(() => {
+    displayWords.value = words.map((word) => {
+      return word
+        .split('')
+        .map(() => randomChar())
+        .join('');
+    });
+  });
+
   onMounted(() => {
-    let duration = 1500; // in ms
+    let duration = 1250; // in ms
     let interval = 10; // in ms
     let steps = duration / interval;
 

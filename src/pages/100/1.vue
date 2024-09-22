@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
   import P5 from 'p5';
-  import { onMounted, ref } from 'vue';
+  import { onMounted, onUnmounted, ref } from 'vue';
   import { get, useElementHover } from '@vueuse/core';
 
   const canvas = ref<HTMLDivElement | null>();
@@ -18,12 +18,14 @@
     x: number;
     y: number;
     z: number;
+    pz: number; // Previous z position
 
     constructor(p: P5) {
       this.p = p;
       this.x = p.random(-p.width, p.width);
       this.y = p.random(-p.height, p.height);
       this.z = p.random(p.width); // Depth of the star
+      this.pz = this.z;
     }
 
     update() {
@@ -34,6 +36,7 @@
         this.z = this.p.width;
         this.x = this.p.random(-this.p.width, this.p.width);
         this.y = this.p.random(-this.p.height, this.p.height);
+        this.pz = this.z;
       }
     }
 
@@ -45,15 +48,25 @@
       const sx = this.p.map(this.x / this.z, 0, 1, 0, this.p.width);
       const sy = this.p.map(this.y / this.z, 0, 1, 0, this.p.height);
 
+      // Scale size
+      const scaleSize = this.p.map(this.z, 0, this.p.width, 16, 0);
+
       // Draw a simple circle for the star
-      this.p.ellipse(sx, sy, 8, 8);
+      this.p.ellipse(sx, sy, scaleSize, scaleSize);
+
+      // Draw the tail (a line from old position to new position)
+      const px = this.p.map(this.x / this.pz, 0, 1, 0, this.p.width);
+      const py = this.p.map(this.y / this.pz, 0, 1, 0, this.p.height);
+      this.pz = this.z;
+      this.p.stroke(255);
+      this.p.line(px, py, sx, sy);
     }
   }
 
   onMounted(() => {
     const stars: Star[] = [];
 
-    const myp5 = new P5((sketch: p5) => {
+    const myp5: p5 = new P5((sketch: p5) => {
       sketch.setup = () => {
         // Create a canvas that fits the screen
         sketch.createCanvas(sketch.windowWidth, sketch.windowHeight);

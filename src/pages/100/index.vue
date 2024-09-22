@@ -1,33 +1,27 @@
 <template>
   <main class="font-mono">
-    <p
-      id="heading"
-      class="common-padding text-sm">
-      <span
-        v-for="(word, index) in displayWords"
-        :key="index"
-        class="block">
+    <p id="heading" class="common-padding text-sm">
+      <span v-for="(word, index) in displayWords" :key="index" class="block">
         {{ word }}
       </span>
     </p>
 
-    <div class="gap-y-2 flex flex-wrap">
+    <div class="flex flex-wrap gap-y-2">
       <router-link
         :to="p.urlName"
         v-for="p in projects"
         :key="p.id"
-        class="border transition-all z-0 hover:z-10 duration-500 ease-in-out size-[300px] content-center hover:scale-105 hover:drop-shadow-2xl hover:shadow-2xl">
+        class="z-0 size-[300px] content-center border transition-all duration-500 ease-in-out hover:z-10 hover:scale-105 hover:shadow-2xl hover:drop-shadow-2xl"
+      >
         <video
           v-if="p.isVideo"
           class="size-full object-cover"
           :src="p.src"
           autoplay="true"
           loop
-          muted />
-        <img
-          v-else
-          class="size-full object-cover"
-          :src="p.src" />
+          muted
+        />
+        <img v-else class="size-full object-cover" :src="p.src" />
       </router-link>
     </div>
   </main>
@@ -46,7 +40,7 @@
     'start at',
     '- August 28 2024',
     '& end',
-    '- until I die'
+    '- until I die',
   ];
   const chars =
     'abcdeghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+{}[]|\\;:"<>?,./`~';
@@ -81,7 +75,7 @@
         return word
           .split('')
           .map((char, j) =>
-            stepCount >= (steps / word.length) * (j + 1) ? char : randomChar()
+            stepCount >= (steps / word.length) * (j + 1) ? char : randomChar(),
           )
           .join('');
       });

@@ -1,7 +1,5 @@
 <template>
-  <div
-    ref="canvas"
-    id="canvas"></div>
+  <div ref="canvas" id="canvas"></div>
 </template>
 
 <script setup lang="ts">
@@ -67,27 +65,30 @@
   onMounted(() => {
     const stars: Star[] = [];
 
-    const myp5: p5 = new P5((sketch: p5) => {
-      sketch.setup = () => {
-        // Create a canvas that fits the screen
-        sketch.createCanvas(sketch.windowWidth, sketch.windowHeight);
+    const myp5: p5 = new P5(
+      (sketch: p5) => {
+        sketch.setup = () => {
+          // Create a canvas that fits the screen
+          sketch.createCanvas(sketch.windowWidth, sketch.windowHeight);
 
-        // Create stars
-        for (let i = 0; i < numStars; i++) {
-          stars[i] = new Star(sketch);
-        }
+          // Create stars
+          for (let i = 0; i < numStars; i++) {
+            stars[i] = new Star(sketch);
+          }
 
-        sketch.draw = () => {
-          sketch.background(255);
-          sketch.translate(sketch.width / 2, sketch.height / 2);
+          sketch.draw = () => {
+            sketch.background(255);
+            sketch.translate(sketch.width / 2, sketch.height / 2);
 
-          stars.forEach((star) => {
-            star.update();
-            star.show();
-          });
+            stars.forEach((star) => {
+              star.update();
+              star.show();
+            });
+          };
         };
-      };
-    }, document.getElementById('canvas') as HTMLDivElement);
+      },
+      document.getElementById('canvas') as HTMLDivElement,
+    );
   });
 
   // Increase speed on hover

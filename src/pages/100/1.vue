@@ -6,10 +6,11 @@
 
 <script setup lang="ts">
   import P5 from 'p5';
-  import { onMounted, onUnmounted, ref } from 'vue';
+  import { onMounted, ref, watch } from 'vue';
   import { get, useElementHover } from '@vueuse/core';
 
   const canvas = ref<HTMLDivElement | null>();
+  const isHovered = useElementHover(canvas);
   const numStars = 800;
   const speed = ref(5);
 
@@ -87,5 +88,36 @@
         };
       };
     }, document.getElementById('canvas') as HTMLDivElement);
+  });
+
+  // Increase speed on hover
+  const increaseSpeed = () => {
+    let interval = setInterval(() => {
+      if (speed.value >= 50 || !isHovered.value) {
+        clearInterval(interval);
+      } else {
+        speed.value += 1;
+      }
+    }, 1);
+  };
+
+  // Reset speed when not hovered
+  const resetSpeed = () => {
+    let interval = setInterval(() => {
+      if (speed.value <= 5 || isHovered.value) {
+        clearInterval(interval);
+      } else {
+        speed.value -= 1;
+      }
+    }, 1);
+  };
+
+  // Watch for hover changes
+  watch(isHovered, (newVal: boolean) => {
+    if (newVal) {
+      increaseSpeed();
+    } else {
+      resetSpeed();
+    }
   });
 </script>

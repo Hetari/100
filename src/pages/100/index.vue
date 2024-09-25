@@ -17,9 +17,10 @@
           v-if="p.isVideo"
           class="size-full object-cover"
           :src="p.src"
-          autoplay="true"
+          autoplay
           loop
           muted
+          playsinline
         />
         <img v-else class="size-full object-cover" :src="p.src" />
       </router-link>

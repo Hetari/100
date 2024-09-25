@@ -1,8 +1,41 @@
 <template>
-  <div ref="canvas" id="canvas"></div>
+  <main class="flex-center">
+    <div ref="canvas" id="canvas"></div>
+    <div
+      class="items-center justify-between px-[3%] max-sm:grid max-sm:grid-cols-1 sm:flex sm:px-[5%]"
+    >
+      <h1
+        class="w-full text-center font-mono text-[7.5vw] font-bold text-white max-sm:order-last sm:text-4xl lg:text-6xl xl:text-7xl"
+      >
+        Just coding <br />
+        for living
+      </h1>
+
+      <div
+        class="main max-sm:flex-center relative flex size-fit w-full justify-end"
+      >
+        <div
+          class="absolute left-1/2 top-1/2 size-36 -translate-x-full -translate-y-1/2 bg-green-500 blur-[100px]"
+        ></div>
+        <img class="w-[45vw]" :src="_2_vue_logo" alt="vuejs logo" />
+      </div>
+    </div>
+  </main>
 </template>
 
+<style scoped>
+  main,
+  .main {
+    display: grid;
+    & > * {
+      grid-row: 1;
+      grid-column: 1;
+    }
+  }
+</style>
+
 <script setup lang="ts">
+  import { _2_vue_logo } from '../../assets';
   import { tryOnMounted, tryOnUnmounted } from '@vueuse/core';
   import P5 from 'p5';
   import { ref } from 'vue';

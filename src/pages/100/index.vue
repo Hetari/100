@@ -1,6 +1,6 @@
 <template>
   <main class="font-mono">
-    <p id="heading" class="common-padding text-sm">
+    <p id="heading" class="common-padding text-[1rem]]">
       <span v-for="(word, index) in displayWords" :key="index" class="block">
         {{ word }}
       </span>

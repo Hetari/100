@@ -4,5 +4,6 @@
 import _0 from './0.webm';
 import _1 from './1.webm';
 import _2 from './2.webm';
+import _2_vue_logo from './2.webp';
 
-export { _0, _1, _2 };
+export { _0, _1, _2, _2_vue_logo };

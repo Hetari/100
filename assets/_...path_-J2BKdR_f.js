@@ -1,0 +1,1 @@
+import{_ as e,o as t,c}from"./index-BRkvtEgr.js";const _={},o={class:"flex-center h-screen text-xl sm:text-7xl lg:text-9xl"};function s(n,r){return t(),c("div",o," 404 - Not found ")}const l=e(_,[["render",s]]);export{l as default};

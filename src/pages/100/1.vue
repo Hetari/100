@@ -9,8 +9,8 @@
 
   const canvas = ref<HTMLDivElement | null>();
   const isHovered = useElementHover(canvas);
-  const numStars = 800;
-  const speed = ref(5);
+  const NUM_STARS = 800;
+  const SPEED = ref(5);
 
   class Star {
     p: P5;
@@ -28,7 +28,7 @@
     }
 
     update() {
-      this.z -= get(speed);
+      this.z -= get(SPEED);
 
       if (this.z < 1) {
         // Reset if it's too close
@@ -65,10 +65,10 @@
   // Increase speed on hover
   const increaseSpeed = () => {
     let interval = setInterval(() => {
-      if (speed.value >= 50 || !isHovered.value) {
+      if (SPEED.value >= 50 || !isHovered.value) {
         clearInterval(interval);
       } else {
-        speed.value += 1;
+        SPEED.value += 1;
       }
     }, 1);
   };
@@ -76,10 +76,10 @@
   // Reset speed when not hovered
   const resetSpeed = () => {
     let interval = setInterval(() => {
-      if (speed.value <= 5 || isHovered.value) {
+      if (SPEED.value <= 5 || isHovered.value) {
         clearInterval(interval);
       } else {
-        speed.value -= 1;
+        SPEED.value -= 1;
       }
     }, 1);
   };
@@ -95,7 +95,7 @@
           sketch.createCanvas(sketch.windowWidth, sketch.windowHeight);
 
           // Create stars
-          for (let i = 0; i < numStars; i++) {
+          for (let i = 0; i < NUM_STARS; i++) {
             stars[i] = new Star(sketch);
           }
 
@@ -108,6 +108,9 @@
               star.show();
             });
           };
+        };
+        sketch.windowResized = () => {
+          sketch.resizeCanvas(sketch.windowWidth, sketch.windowHeight);
         };
       },
       document.getElementById('canvas') as HTMLDivElement,
